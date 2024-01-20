@@ -8,7 +8,7 @@ export default function ProfileCard({ children }) {
   return (
     <div
       id="app-container--main"
-      className="flex flex-col items-center rounded-3xl bg-offBlack px-4 py-6 lg:p-10"
+      className="flex flex-col items-center rounded-3xl bg-slate-100 px-4 py-6 drop-shadow-2xl lg:p-10 dark:bg-offBlack"
     >
       {children}
     </div>
