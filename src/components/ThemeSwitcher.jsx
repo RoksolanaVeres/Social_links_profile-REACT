@@ -1,13 +1,32 @@
 import { SunIcon, MoonIcon } from "../components/Icons";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function ThemeSwitcher() {
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState(() => {
+    const initialTheme = localStorage.getItem("theme");
+    return initialTheme ? initialTheme : "dark";
+  });
+
+  function getThemeFromLocalStorage() {
+    const savedTheme = localStorage.getItem("theme");
+    savedTheme && setTheme(savedTheme);
+    savedTheme === "light" && document.documentElement.classList.remove("dark");
+  }
 
   function toggleTheme() {
-    setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
+    setTheme((prevTheme) => {
+      const newTheme = prevTheme === "dark" ? "light" : "dark";
+      localStorage.setItem("theme", newTheme);
+      return newTheme;
+    });
+
     document.documentElement.classList.toggle("dark");
   }
+
+  useEffect(() => {
+    getThemeFromLocalStorage();
+  }, [theme]);
+
   return (
     <div className="self-end text-white">
       <button
