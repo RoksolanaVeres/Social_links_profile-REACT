@@ -7,7 +7,7 @@ export default function App() {
     <>
       <div
         id="app-layout"
-        className="font-intertransition-all flex min-h-dvh items-center justify-center bg-slate-100 px-6 transition-all duration-300 ease-linear dark:bg-black"
+        className="flex min-h-dvh items-center justify-center bg-slate-100 px-6 transition-all duration-300 ease-linear dark:bg-black"
       >
         <div className="flex w-[390px] flex-col gap-6">
           <ThemeSwitcher />
