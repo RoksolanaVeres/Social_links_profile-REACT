@@ -1,20 +1,24 @@
 import { SunIcon, MoonIcon } from "../components/Icons";
-import { useState, useEffect } from "react";
+import { useContext } from "react";
+import { ThemeContext } from "../context/ThemeContext";
 
 export default function ThemeSwitcher() {
-  const [theme, setTheme] = useState(() => {
-    const initialTheme = localStorage.getItem("theme");
-    return initialTheme ? initialTheme : "dark";
-  });
+  const { themeValue, setThemeValue } = useContext(ThemeContext);
+  console.log(themeValue);
 
-  function getThemeFromLocalStorage() {
-    const savedTheme = localStorage.getItem("theme");
-    savedTheme && setTheme(savedTheme);
-    savedTheme === "light" && document.documentElement.classList.remove("dark");
-  }
+  // const [theme, setTheme] = useState(() => {
+  //   const initialTheme = localStorage.getItem("theme");
+  //   return initialTheme ? initialTheme : "dark";
+  // });
+
+  // function getThemeFromLocalStorage() {
+  //   const savedTheme = localStorage.getItem("theme");
+  //   savedTheme && setTheme(savedTheme);
+  //   savedTheme === "light" && document.documentElement.classList.remove("dark");
+  // }
 
   function toggleTheme() {
-    setTheme((prevTheme) => {
+    setThemeValue((prevTheme) => {
       const newTheme = prevTheme === "dark" ? "light" : "dark";
       localStorage.setItem("theme", newTheme);
       return newTheme;
@@ -23,9 +27,9 @@ export default function ThemeSwitcher() {
     document.documentElement.classList.toggle("dark");
   }
 
-  useEffect(() => {
-    getThemeFromLocalStorage();
-  }, [theme]);
+  // useEffect(() => {
+  //   getThemeFromLocalStorage();
+  // }, [theme]);
 
   return (
     <div className="self-end text-white">
@@ -33,7 +37,7 @@ export default function ThemeSwitcher() {
         className="flex size-[40px] items-center justify-center rounded-xl hover:bg-slate-200 hover:dark:bg-darkGrey"
         onClick={toggleTheme}
       >
-        {theme === "dark" ? <SunIcon /> : <MoonIcon />}
+        {themeValue === "dark" ? <SunIcon /> : <MoonIcon />}
       </button>
     </div>
   );
