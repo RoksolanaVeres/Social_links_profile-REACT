@@ -7,7 +7,7 @@ export default function ThemeSwitcher() {
   console.log(theme);
 
   function toggleTheme() {
-    setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
+    theme === "dark" ? setTheme("light") : setTheme("dark");
   }
 
   return (
